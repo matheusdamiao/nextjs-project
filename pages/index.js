@@ -1,29 +1,24 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
-import https from "https";
 import { getAllProducts } from "../lib/products";
 import { useEffect, useState } from "react";
+import ProductCardModal from "../components/ProductCardModal";
+import ProductCard from "../components/ProductCard";
+import NewProductCardModal from "../components/NewProductCardModal";
 
-export const getStaticProps = async () => {
-  const products = await getAllProducts();
-  return {
-    props: { products },
+export default function Home() {
+  const [allProducts, setAllProducts] = useState([]);
+  const [isClicked, setIsClicked] = useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await getAllProducts();
+    setAllProducts(data);
   };
-};
-
-export default function Home({ products }) {
-  // const [allProducts, setAllProducts] = useState([]);
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-
-  // const fetchData = async () => {
-  //   const res = await fetch("http://localhost:5077/product/all");
-  //   const data = await res.json();
-  //   setAllProducts(data);
-  // };
 
   return (
     <>
@@ -31,16 +26,39 @@ export default function Home({ products }) {
         <title> Products </title>
       </Head>
 
-      <h1> All products </h1>
-      {products.map((product) => {
-        return (
-          <div key={product.id}>
-            <li>{product.name}</li>
-            <li>{product.category}</li>
-            <li>{product.price}</li>
-          </div>
-        );
-      })}
+      <div className={styles.wrapperHeading}>
+        <h1 className={styles.title}> Admin Panel </h1>
+        <button
+          className={styles.createBtn}
+          onClick={() => setIsClicked(!isClicked)}
+        >
+          {" "}
+          Create New Product
+        </button>
+      </div>
+
+      <div className={styles.wrapperContent}>
+        {allProducts &&
+          allProducts.map((product) => {
+            return (
+              <ProductCard
+                id={product.id}
+                name={product.name}
+                category={product.category}
+                manufacturer={product.manufacturer}
+                stock={product.stock}
+                price={product.price}
+                key={product.id}
+              />
+            );
+          })}
+      </div>
+      {isClicked && (
+        <NewProductCardModal
+          isClicked={isClicked}
+          setIsClicked={setIsClicked}
+        />
+      )}
     </>
   );
 }

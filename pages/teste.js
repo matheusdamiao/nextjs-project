@@ -17,20 +17,16 @@ function teste({ dados }) {
 export default teste;
 
 export async function getServerSideProps() {
-  // const httpsAgent = new https.Agent({
-  //   rejectUnauthorized: false,
-  // });
-
   const registerData = register;
   const res = await fetch("http://localhost:5077/auth/register", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/JSON",
     },
-    body: JSON.stringify(registerData),
-    // agent: httpsAgent,
+    body: registerData,
   });
-  const dados = res.json();
+  console.log(res);
+  const dados = await res.json();
   return {
     props: {
       dados, // will be passed to the page component as props

@@ -1,0 +1,13 @@
+
+
+.wrapper {
+    background-color: rgb(219, 144, 4);
+    color: white;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+    border-radius: 9px;
+
+}
