@@ -8,13 +8,23 @@ const ProductCard = ({ id, name, category, manufacturer, stock, price }) => {
   return (
     <>
       <div className={styles.wrapper}>
-        <p> ID:{id}</p>
-        <h2> Name:{name}</h2>
-        <h4> Category:{category}</h4>
-        <h5>Manufacturer:{manufacturer}</h5>
-        <p>Stock:{stock}</p>
-        <p>Price: {price}</p>
-        <button onClick={() => setIsClicked(!isClicked)}>Edit</button>
+        <div className={styles.wrapperText}>
+          <label></label>
+          <h2> Name:{name}</h2>
+          <h4> Category:{category}</h4>
+          <h4>Manufacturer:{manufacturer}</h4>
+        </div>
+
+        <div className={styles.wrapperNumbers}>
+          <p> ID:{id}</p>
+          <p>Stock:{stock}</p>
+          <p>Price: {price}</p>
+        </div>
+
+        <div className={styles.btns}>
+          <button onClick={() => setIsClicked(!isClicked)}>Edit</button>
+          <button onClick={() => setIsClicked(!isClicked)}>Delete</button>
+        </div>
       </div>
       {isClicked && (
         <ProductCardModal

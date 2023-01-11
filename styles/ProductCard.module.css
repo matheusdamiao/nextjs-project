@@ -3,11 +3,55 @@
 .wrapper {
     background-color: rgb(219, 144, 4);
     color: white;
-    width: 600px;
+    width: 100%;
+    max-width: 800px;
+    min-height: 250px;
+    height: 100%;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
     margin-bottom: 50px;
     border-radius: 9px;
+    margin: 0 50px;
+    gap: 20%;
+}
 
+
+.wrapperText {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0px 10px;
+}
+
+.wrapperText > h2{
+    font-size: 35px;
+}
+
+.wrapperText > * {
+    margin: 0;
+}
+
+.wrapperNumbers{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.wrapperNumbers > * {
+    margin: 0;
+}
+
+.btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btns > * {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 9px;
+    border: none;
 }

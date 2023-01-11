@@ -40,39 +40,77 @@ const ProductCardModal = ({
   return (
     <div className={styles.modalBackground}>
       <form onSubmit={handleSubmit} className={styles.wrapper}>
-        <input type="text" name="id" value={values.id} onChange={handleInput} />
-        <input
-          type="text"
-          name="name"
-          value={values.name}
-          onChange={handleInput}
-        />
-        <input
-          type="text"
-          name="category"
-          value={values.category}
-          onChange={handleInput}
-        />
-        <input
-          type="text"
-          name="manufacturer"
-          value={values.manufacturer}
-          onChange={handleInput}
-        />
-        <input
-          type="text"
-          name="stock"
-          value={values.stock}
-          onChange={handleInput}
-        />
-        <input
-          type="text"
-          name="price"
-          value={values.price}
-          onChange={handleInput}
-        />
-        <button onClick={() => setIsClicked(!isClicked)}>X</button>
-        <button type="submit"> Update Product</button>
+        <button
+          className={styles.closeBtn}
+          onClick={() => setIsClicked(!isClicked)}
+        >
+          X
+        </button>
+
+        <div className={styles.inputWrapper}>
+          <label>ID:</label>
+          <input
+            type="text"
+            name="id"
+            value={values.id}
+            onChange={handleInput}
+          />
+        </div>
+
+        <div className={styles.inputWrapper}>
+          <label>Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={handleInput}
+          />
+        </div>
+
+        <div className={styles.inputWrapper}>
+          <label>Category:</label>
+          <input
+            type="text"
+            name="category"
+            value={values.category}
+            onChange={handleInput}
+          />
+        </div>
+
+        <div className={styles.inputWrapper}>
+          <label>Manufacturer:</label>
+          <input
+            type="text"
+            name="manufacturer"
+            value={values.manufacturer}
+            onChange={handleInput}
+          />
+        </div>
+
+        <div className={styles.inputWrapper}>
+          <label>Stock:</label>
+          <input
+            type="text"
+            name="stock"
+            value={values.stock}
+            onChange={handleInput}
+          />
+        </div>
+
+        <div className={styles.inputWrapper}>
+          <label>Price:</label>
+          <input
+            type="text"
+            name="price"
+            value={values.price}
+            onChange={handleInput}
+          />
+        </div>
+
+        <button className={styles.updateBtn} type="submit">
+          {" "}
+          Update Product
+        </button>
       </form>
     </div>
   );
