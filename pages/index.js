@@ -1,7 +1,5 @@
 import Head from "next/head";
-// import styles from "../styles/Home.module.css";
 import styles from "./../src/styles/Home.module.css";
-import Link from "next/link";
 import { getAllProducts } from "../src/lib/productServices";
 import { useEffect, useState } from "react";
 import ProductCardModal from "../src/components/ProductCardModal";

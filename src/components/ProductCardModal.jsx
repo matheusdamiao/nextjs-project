@@ -15,7 +15,7 @@ const ProductCardModal = ({
   needRefresh,
 }) => {
   const [values, setValues] = useState({
-    id: id,
+    Id: id,
     name: name,
     category: category,
     manufacturer: manufacturer,
@@ -23,11 +23,22 @@ const ProductCardModal = ({
     price: price,
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const [isUpdated, setIsUpdated] = useState("no");
 
-    await updateProduct(values, id);
-    setNeedRefresh(!needRefresh);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    update();
+  };
+
+  const update = async () => {
+    const res = await updateProduct(values, id);
+    console.log(res);
+    if (res === 200) {
+      setIsUpdated("yes");
+      setNeedRefresh(!needRefresh);
+    } else {
+      setIsUpdated("Error");
+    }
   };
 
   const handleInput = (e) => {
@@ -55,8 +66,8 @@ const ProductCardModal = ({
           <input
             required
             type="text"
-            name="id"
-            value={values.id}
+            name="Id"
+            value={values.Id}
             onChange={handleInput}
           />
         </div>
@@ -116,10 +127,36 @@ const ProductCardModal = ({
           />
         </div>
 
-        <button className={styles.updateBtn} type="submit">
-          {" "}
-          Update Product
-        </button>
+        {isUpdated === "no" && (
+          <button className={styles.updateBtn} type="submit">
+            {" "}
+            Update Product
+          </button>
+        )}
+
+        {isUpdated === "yes" && (
+          <button
+            className={styles.updateBtn}
+            style={{ backgroundColor: "green" }}
+            type="button"
+            disabled
+          >
+            {" "}
+            Product Updated!
+          </button>
+        )}
+
+        {isUpdated === "Error" && (
+          <button
+            className={styles.updateBtn}
+            style={{ backgroundColor: "red" }}
+            type="button"
+            disabled
+          >
+            {" "}
+            Ops! Something went wrong.
+          </button>
+        )}
       </form>
     </div>
   );
