@@ -17,7 +17,7 @@ const ProductCard = ({
 
   const handleDelete = async (e) => {
     await deleteProduct(Number(id));
-    setNeedRefresh(true);
+    setNeedRefresh(!needRefresh);
     e.preventDefault();
   };
 
