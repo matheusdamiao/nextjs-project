@@ -51,6 +51,7 @@ const NewProductCardModal = ({
         <button
           className={styles.closeBtn}
           onClick={() => setIsClicked(!isClicked)}
+          type="button"
         >
           X
         </button>
@@ -136,9 +137,10 @@ const NewProductCardModal = ({
 
         {isUpdated === "yes" && (
           <button
+            type="button"
             style={{ backgroundColor: "green" }}
             className={styles.createBtn}
-            // type="submit"
+            disabled
           >
             Product created!
           </button>
