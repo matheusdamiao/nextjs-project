@@ -9,9 +9,10 @@ const ProductCardModal = ({
   manufacturer,
   stock,
   price,
-  key,
   isClicked,
   setIsClicked,
+  setNeedRefresh,
+  needRefresh,
 }) => {
   const [values, setValues] = useState({
     id: id,
@@ -22,10 +23,11 @@ const ProductCardModal = ({
     price: price,
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    updateProduct(values, id);
+    await updateProduct(values, id);
+    setNeedRefresh(!needRefresh);
   };
 
   const handleInput = (e) => {
@@ -43,6 +45,7 @@ const ProductCardModal = ({
         <button
           className={styles.closeBtn}
           onClick={() => setIsClicked(!isClicked)}
+          type="button"
         >
           X
         </button>
@@ -50,6 +53,7 @@ const ProductCardModal = ({
         <div className={styles.inputWrapper}>
           <label>ID:</label>
           <input
+            required
             type="text"
             name="id"
             value={values.id}
@@ -60,6 +64,7 @@ const ProductCardModal = ({
         <div className={styles.inputWrapper}>
           <label>Name:</label>
           <input
+            required
             type="text"
             name="name"
             value={values.name}
@@ -70,6 +75,7 @@ const ProductCardModal = ({
         <div className={styles.inputWrapper}>
           <label>Category:</label>
           <input
+            required
             type="text"
             name="category"
             value={values.category}
@@ -80,6 +86,7 @@ const ProductCardModal = ({
         <div className={styles.inputWrapper}>
           <label>Manufacturer:</label>
           <input
+            required
             type="text"
             name="manufacturer"
             value={values.manufacturer}
@@ -90,6 +97,7 @@ const ProductCardModal = ({
         <div className={styles.inputWrapper}>
           <label>Stock:</label>
           <input
+            required
             type="text"
             name="stock"
             value={values.stock}
@@ -100,6 +108,7 @@ const ProductCardModal = ({
         <div className={styles.inputWrapper}>
           <label>Price:</label>
           <input
+            required
             type="text"
             name="price"
             value={values.price}

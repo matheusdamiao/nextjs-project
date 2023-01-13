@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createProduct } from "../lib/products";
 import styles from "../styles/NewProductCardModal.module.css";
 
-const NewProductCardModal = ({ isClicked, setIsClicked }) => {
+const NewProductCardModal = ({
+  isClicked,
+  setIsClicked,
+  setNeedRefresh,
+  needRefresh,
+}) => {
   const [productValue, setProductValue] = useState({
     id: "",
     name: "",
@@ -12,9 +17,22 @@ const NewProductCardModal = ({ isClicked, setIsClicked }) => {
     price: "",
   });
 
+  const [isUpdated, setIsUpdated] = useState("no");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    createProduct(productValue);
+    newProduct();
+  };
+
+  const newProduct = async () => {
+    const res = await createProduct(productValue);
+    console.log(res);
+    if (res.statusCode === 201) {
+      setIsUpdated("yes");
+      setNeedRefresh(!needRefresh);
+    } else {
+      setIsUpdated("no");
+    }
   };
 
   const updateInput = (e) => {
@@ -65,6 +83,7 @@ const NewProductCardModal = ({ isClicked, setIsClicked }) => {
         <div className={styles.inputWrapper}>
           <label>Category: </label>
           <input
+            required
             type="text"
             name="category"
             value={productValue.category}
@@ -76,6 +95,7 @@ const NewProductCardModal = ({ isClicked, setIsClicked }) => {
         <div className={styles.inputWrapper}>
           <label>Manufacturer: </label>
           <input
+            required
             type="text"
             name="manufacturer"
             value={productValue.manufacturer}
@@ -87,6 +107,7 @@ const NewProductCardModal = ({ isClicked, setIsClicked }) => {
         <div className={styles.inputWrapper}>
           <label>Stock: </label>
           <input
+            required
             type="text"
             name="stock"
             value={productValue.stock}
@@ -98,6 +119,7 @@ const NewProductCardModal = ({ isClicked, setIsClicked }) => {
         <div className={styles.inputWrapper}>
           <label>Price: </label>
           <input
+            required
             type="text"
             name="price"
             value={productValue.price}
@@ -106,9 +128,21 @@ const NewProductCardModal = ({ isClicked, setIsClicked }) => {
           <span></span>
         </div>
 
-        <button className={styles.createBtn} type="submit">
-          Create New Product{" "}
-        </button>
+        {isUpdated === "no" && (
+          <button className={styles.createBtn} type="submit">
+            Create New Product
+          </button>
+        )}
+
+        {isUpdated === "yes" && (
+          <button
+            style={{ backgroundColor: "green" }}
+            className={styles.createBtn}
+            // type="submit"
+          >
+            Product created!
+          </button>
+        )}
       </form>
     </div>
   );

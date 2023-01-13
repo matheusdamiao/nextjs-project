@@ -1,9 +1,25 @@
 import React, { useState } from "react";
+import { deleteProduct } from "../lib/products";
 import styles from "../styles/ProductCard.module.css";
 import ProductCardModal from "./ProductCardModal";
 
-const ProductCard = ({ id, name, category, manufacturer, stock, price }) => {
+const ProductCard = ({
+  id,
+  name,
+  category,
+  manufacturer,
+  stock,
+  price,
+  setNeedRefresh,
+  needRefresh,
+}) => {
   const [isClicked, setIsClicked] = useState(false);
+
+  const handleDelete = async (e) => {
+    await deleteProduct(Number(id));
+    setNeedRefresh(true);
+    e.preventDefault();
+  };
 
   return (
     <>
@@ -23,7 +39,7 @@ const ProductCard = ({ id, name, category, manufacturer, stock, price }) => {
 
         <div className={styles.btns}>
           <button onClick={() => setIsClicked(!isClicked)}>Edit</button>
-          <button onClick={() => setIsClicked(!isClicked)}>Delete</button>
+          <button onClick={handleDelete}>Delete</button>
         </div>
       </div>
       {isClicked && (
@@ -37,6 +53,8 @@ const ProductCard = ({ id, name, category, manufacturer, stock, price }) => {
           key={id}
           isClicked={isClicked}
           setIsClicked={setIsClicked}
+          setNeedRefresh={setNeedRefresh}
+          needRefresh={needRefresh}
         />
       )}
     </>

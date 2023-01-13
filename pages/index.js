@@ -10,10 +10,11 @@ import NewProductCardModal from "../components/NewProductCardModal";
 export default function Home() {
   const [allProducts, setAllProducts] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
+  const [needRefresh, setNeedRefresh] = useState(false);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [needRefresh]);
 
   const fetchData = async () => {
     const data = await getAllProducts();
@@ -49,6 +50,8 @@ export default function Home() {
                 stock={product.stock}
                 price={product.price}
                 key={product.id}
+                needRefresh={needRefresh}
+                setNeedRefresh={setNeedRefresh}
               />
             );
           })}
@@ -57,6 +60,8 @@ export default function Home() {
         <NewProductCardModal
           isClicked={isClicked}
           setIsClicked={setIsClicked}
+          needRefresh={needRefresh}
+          setNeedRefresh={setNeedRefresh}
         />
       )}
     </>
