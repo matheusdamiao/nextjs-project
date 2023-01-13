@@ -9,7 +9,12 @@ Assim, para rodar este projeto, é preciso primeiro estar com o servidor da Web 
 
 ## Run NextJS 
 
-#### Clone este repositório e rode-o localmente com o seguinte comando:
+#### Clone este repositório, instale as dependências e rode-o localmente com o seguintes comandos:
+
+```bash
+  npm install
+```
+em seguida,
 
 ```bash
   npm run dev
