@@ -1,11 +1,12 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+// import styles from "../styles/Home.module.css";
+import styles from "./../src/styles/Home.module.css";
 import Link from "next/link";
-import { getAllProducts } from "../lib/products";
+import { getAllProducts } from "../src/lib/productServices";
 import { useEffect, useState } from "react";
-import ProductCardModal from "../components/ProductCardModal";
-import ProductCard from "../components/ProductCard";
-import NewProductCardModal from "../components/NewProductCardModal";
+import ProductCardModal from "../src/components/ProductCardModal";
+import ProductCard from "../src/components/ProductCard";
+import NewProductCardModal from "../src/components/NewProductCardModal";
 
 export default function Home() {
   const [allProducts, setAllProducts] = useState([]);

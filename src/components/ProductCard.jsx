@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { deleteProduct } from "../lib/products";
+import { deleteProduct } from "../lib/productServices";
 import styles from "../styles/ProductCard.module.css";
 import ProductCardModal from "./ProductCardModal";
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { createProduct } from "../lib/products";
+import { createProduct } from "../lib/productServices";
 import styles from "../styles/NewProductCardModal.module.css";
 
 const NewProductCardModal = ({

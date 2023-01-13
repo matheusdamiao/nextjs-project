@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles/ProductCardModal.module.css";
-import { updateProduct } from "../lib/products";
+import { updateProduct } from "../lib/productServices";
 
 const ProductCardModal = ({
   id,
